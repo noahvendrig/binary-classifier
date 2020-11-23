@@ -141,9 +141,11 @@ conv_layers = [1, 2, 3]
 '''
 
 # From analysing TensorBoard data we can conclude that 3, 128, 2 gives us the best results
-dense_layers = [2]
-layer_sizes = [128]
+
+
 conv_layers = [3]
+layer_sizes = [128]
+dense_layers = [2]
 
 for dense_layer in dense_layers:
   for layer_size in layer_sizes:
