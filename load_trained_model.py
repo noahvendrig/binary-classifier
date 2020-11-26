@@ -22,35 +22,23 @@ def prepare(filepath): # Preparing model
 
 model = tf.keras.models.load_model("128x3-CNN.model")
 
-
-prediction = model.predict([prepare('input_imgs/dog.jpg')]) # Initialising 'prediction' (doesn't actually matter what image is used here)
-
+prediction = model.predict([prepare('dog.jpg')])
 print(prediction)
 
-# prediction = model.predict([prepare('input_imgs/dog.jpg')])  # One by one approach, will only analyse images that have been selected
+# prediction = model.predict([prepare('dog.jpg')])
 # print(CATEGORIES[int(prediction[0][0])])
 
-# prediction = model.predict([prepare('input_imgs/cat.jpg')])
+# prediction = model.predict([prepare('cat.jpg')])
 # print(CATEGORIES[int(prediction[0][0])])
 
-# prediction = model.predict([prepare('input_imgs/bunny.jpg')])
+# prediction = model.predict([prepare('bunny.jpg')])
 # print(CATEGORIES[int(prediction[0][0])])
 
+imgs = ["dog.jpg", "cat.jpg", "bunny.jpg"]
 
-filelist= []
+def predict(imgs):
+    for img in imgs:
+        prediction = model.predict([prepare(img)])
+        print(img, "=",(CATEGORIES[int(prediction[0][0])]))
 
-for filename in os.listdir("D:/py/project/train_model/input_imgs"): 
-    filelist.append(filename) # Add each file in the directory to the list
-
-print(filelist)
-
-def predict(filelist):
-    for image in filelist:
-        prediction = model.predict([prepare(image)])
-        print(CATEGORIES[int(prediction[0][0])])
-
-        # prediction = model.predict([prepare(image)])
-        # print(image, "=",(CATEGORIES[int(prediction[0][0])])) # Print prediction in the terminal
-
-
-predict(filelist) # Call prediction function
+predict(imgs)
